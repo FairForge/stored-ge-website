@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stored.ge - S3-Compatible Storage + VPS Platform</title>
+    <meta name="description" content="Enterprise S3 storage with integrated VPS compute. 7 global regions, full IAM, starting at $3.99/month.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #5B21B6;
+            --primary-dark: #4C1D95;
+            --secondary: #8B5CF6;
+            --accent: #10B981;
+            --dark: #111827;
+            --gray: #6B7280;
+            --light: #F9FAFB;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid #E5E7EB;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Features */
+        .features {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 5rem 0;
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            border: 2px solid #E5E7EB;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            background: white;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 1rem 0;
+        }
+        
+        .price-period {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+        }
+        
+        .pricing-features li:before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* About */
+        .about {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .about p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Infrastructure */
+        .infrastructure {
+            padding: 5rem 0;
+        }
+        
+        .infrastructure h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .infra-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .infra-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background: var(--light);
+        }
+        
+        .infra-item h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .infra-item p {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">stored.ge</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#infrastructure">Infrastructure</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>S3 Storage + VPS Platform</h1>
+            <p>Enterprise-grade object storage with integrated compute. 7 global regions, full IAM, persistent storage.</p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary">View Plans</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Built for Developers</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>S3-Compatible API</h3>
+                    <p>Full S3 API compatibility with IAM policies, CORS, versioning, and lifecycle management.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>7 Global Regions</h3>
+                    <p>Choose from US West, US Central, US East, EU West, EU Central, Asia Tokyo, or Asia Singapore.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Persistent Storage</h3>
+                    <p>Your data survives VPS rebuilds. Rebuild or reinstall anytime without losing your files.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>NVMe Performance</h3>
+                    <p>Powered by AMD Ryzen 7950X servers with pure NVMe storage for blazing fast performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Built on Seagate Lyve Cloud infrastructure with enterprise-grade security and compliance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Ready</h3>
+                    <p>Perfect for AI workloads. Run Llama, Whisper, and other models directly on your VPS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Simple, Transparent Pricing</h2>
+            <p class="pricing-subtitle">No hidden fees. No egress charges. No API fees.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$3.99<span class="price-period">/month</span></div>
+                    <ul class="pricing-features">
+                        <li>50GB S3 Storage</li>
+                        <li>2GB RAM VPS</li>
+                        <li>NAT IPv4 (10 ports)</li>
+                        <li>5TB Bandwidth</li>
+                        <li>All Regions Available</li>
+                        <li>Full S3 API Access</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Beta Pricing</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <span class="badge">MOST POPULAR</span>
+                    <h3>Growth</h3>
+                    <div class="price">$7.99<span class="price-period">/month</span></div>
+                    <ul class="pricing-features">
+                        <li>100GB S3 Storage</li>
+                        <li>4GB RAM VPS</li>
+                        <li>NAT IPv4 (20 ports)</li>
+                        <li>10TB Bandwidth</li>
+                        <li>Priority Support</li>
+                        <li>Dedicated IPv4 Option</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Power</h3>
+                    <div class="price">$19.99<span class="price-period">/month</span></div>
+                    <ul class="pricing-features">
+                        <li>500GB S3 Storage</li>
+                        <li>8GB RAM VPS</li>
+                        <li>Dedicated IPv4 Included</li>
+                        <li>20TB Bandwidth</li>
+                        <li>Phone Support</li>
+                        <li>99.9% SLA</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infrastructure -->
+    <section class="infrastructure" id="infrastructure">
+        <div class="container">
+            <h2>Enterprise Infrastructure</h2>
+            <div class="infra-grid">
+                <div class="infra-item">
+                    <h4>Seagate Lyve Cloud</h4>
+                    <p>Enterprise-grade S3 storage backend</p>
+                </div>
+                <div class="infra-item">
+                    <h4>AMD Ryzen 7950X</h4>
+                    <p>Latest generation processors</p>
+                </div>
+                <div class="infra-item">
+                    <h4>Pure NVMe Storage</h4>
+                    <p>No spinning disks, ever</p>
+                </div>
+                <div class="infra-item">
+                    <h4>DDR5 Memory</h4>
+                    <p>3600MHz high-speed RAM</p>
+                </div>
+                <div class="infra-item">
+                    <h4>10Gbps Network</h4>
+                    <p>Unmetered bandwidth available</p>
+                </div>
+                <div class="infra-item">
+                    <h4>DDoS Protection</h4>
+                    <p>Always-on attack mitigation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div>
+                    <h2>Professional Storage Infrastructure</h2>
+                    <p>stored.ge provides enterprise-grade S3-compatible object storage combined with high-performance VPS compute. Our platform is built on top of Seagate Lyve Cloud and ReliableSite's premium infrastructure.</p>
+                    <p>We specialize in persistent storage solutions for developers, AI applications, and businesses requiring reliable, scalable storage with integrated compute capabilities.</p>
+                    <p>Founded in 2024, we're committed to providing transparent pricing, exceptional performance, and world-class support to our growing customer base.</p>
+                </div>
+                <div>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-number">7</div>
+                            <div class="stat-label">Global Regions</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime SLA</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">10TB+</div>
+                            <div class="stat-label">Storage Capacity</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="font-size: 2rem; margin-bottom: 1rem;">stored.ge</div>
+                <p style="color: #9CA3AF;">Enterprise S3 Storage + VPS Platform</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Support</a>
+                <a href="#">Status</a>
+            </div>
+            <p style="color: #6B7280; font-size: 0.875rem;">
+                © 2024 stored.ge - A Division of Fairforge LLC<br>
+                Powered by Seagate Lyve Cloud and ReliableSite Infrastructure
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
