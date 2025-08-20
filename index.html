@@ -134,6 +134,30 @@
             color: var(--primary);
         }
         
+        .btn-coming-soon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: not-allowed;
+            opacity: 0.8;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn-coming-soon:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .coming-soon-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            font-weight: 600;
+        }
+        
         /* Features */
         .features {
             padding: 5rem 0;
@@ -346,6 +370,16 @@
             font-size: 0.875rem;
         }
         
+        .upgrade-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+        }
+        
         /* Footer */
         footer {
             background: var(--dark);
@@ -419,7 +453,7 @@
             <p>Enterprise-grade object storage with integrated compute. 7 global regions, full IAM, persistent storage.</p>
             <div class="hero-buttons">
                 <a href="#pricing" class="btn btn-primary">View Plans</a>
-                <a href="#features" class="btn btn-secondary">Learn More</a>
+                <a href="#" class="btn btn-coming-soon">Sign Up <span class="coming-soon-badge">Coming Soon</span></a>
             </div>
         </div>
     </section>
@@ -446,8 +480,8 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>NVMe Performance</h3>
-                    <p>Powered by AMD Ryzen 7950X servers with pure NVMe storage for blazing fast performance.</p>
+                    <h3>High Performance</h3>
+                    <p>Currently powered by Intel Xeon servers. AMD Ryzen 7950X upgrade coming Q1 2025 for even faster performance.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
@@ -481,7 +515,7 @@
                         <li>All Regions Available</li>
                         <li>Full S3 API Access</li>
                     </ul>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Beta Pricing</a>
+                    <button class="btn btn-coming-soon" style="width: 100%; border: 2px solid #E5E7EB;">Coming Soon</button>
                 </div>
                 
                 <div class="pricing-card featured">
@@ -496,7 +530,7 @@
                         <li>Priority Support</li>
                         <li>Dedicated IPv4 Option</li>
                     </ul>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                    <button class="btn btn-coming-soon" style="width: 100%; border: 2px solid var(--primary);">Coming Soon</button>
                 </div>
                 
                 <div class="pricing-card">
@@ -510,7 +544,7 @@
                         <li>Phone Support</li>
                         <li>99.9% SLA</li>
                     </ul>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Contact Sales</a>
+                    <button class="btn btn-coming-soon" style="width: 100%; border: 2px solid #E5E7EB;">Contact Sales</button>
                 </div>
             </div>
         </div>
@@ -526,16 +560,16 @@
                     <p>Enterprise-grade S3 storage backend</p>
                 </div>
                 <div class="infra-item">
-                    <h4>AMD Ryzen 7950X</h4>
-                    <p>Latest generation processors</p>
+                    <h4>Intel Xeon E5<span class="upgrade-badge">7950X Soon</span></h4>
+                    <p>Enterprise processors with AMD upgrade coming</p>
                 </div>
                 <div class="infra-item">
-                    <h4>Pure NVMe Storage</h4>
-                    <p>No spinning disks, ever</p>
+                    <h4>High-Speed SSD</h4>
+                    <p>Fast SSD storage, NVMe upgrade planned</p>
                 </div>
                 <div class="infra-item">
-                    <h4>DDR5 Memory</h4>
-                    <p>3600MHz high-speed RAM</p>
+                    <h4>256GB DDR3<span class="upgrade-badge">DDR5 Soon</span></h4>
+                    <p>Massive memory capacity</p>
                 </div>
                 <div class="infra-item">
                     <h4>10Gbps Network</h4>
@@ -557,7 +591,7 @@
                     <h2>Professional Storage Infrastructure</h2>
                     <p>stored.ge provides enterprise-grade S3-compatible object storage combined with high-performance VPS compute. Our platform is built on top of Seagate Lyve Cloud and ReliableSite's premium infrastructure.</p>
                     <p>We specialize in persistent storage solutions for developers, AI applications, and businesses requiring reliable, scalable storage with integrated compute capabilities.</p>
-                    <p>Founded in 2024, we're committed to providing transparent pricing, exceptional performance, and world-class support to our growing customer base.</p>
+                    <p>Founded in 2024, we're committed to providing transparent pricing, exceptional performance, and world-class support to our growing customer base. Platform launch planned for Q1 2025.</p>
                 </div>
                 <div>
                     <div class="stats">
@@ -588,7 +622,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="logo" style="font-size: 2rem; margin-bottom: 1rem;">stored.ge</div>
-                <p style="color: #9CA3AF;">Enterprise S3 Storage + VPS Platform</p>
+                <p style="color: #9CA3AF;">Enterprise S3 Storage + VPS Platform - Launching Q1 2025</p>
             </div>
             <div class="footer-links">
                 <a href="#">Terms of Service</a>
