@@ -261,6 +261,20 @@
             opacity: 0.7;
         }
         
+        /* Success Message */
+        .form-success {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .form-success.show {
+            display: block;
+        }
+        
         /* Features */
         .features {
             padding: 5rem 0;
@@ -718,10 +732,16 @@
             <h1>Enterprise S3 Storage + VPS Platform</h1>
             <p>The most advanced S3-compatible object storage with integrated compute. 7 global regions, full IAM support, persistent storage that survives VPS rebuilds.</p>
             
-            <form class="waitlist-form" onsubmit="handleWaitlist(event)">
-                <input type="email" placeholder="Enter your email for early access" required>
+            <!-- Netlify Form -->
+            <form name="waitlist" method="POST" data-netlify="true" class="waitlist-form">
+                <input type="email" name="email" placeholder="Enter your email for early access" required>
                 <button type="submit" class="btn btn-primary">Join Waitlist</button>
             </form>
+            
+            <!-- Success Message (shown after form submission) -->
+            <div id="form-success" class="form-success">
+                🎉 Success! You're on the waitlist. We'll notify you when early access opens!
+            </div>
             
             <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-secondary);">
                 Be among the first 100 users to get 50% off for life
@@ -742,7 +762,7 @@
                     <p>Full S3 API compatibility with IAM policies, CORS, versioning, lifecycle management, and multipart uploads.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
+                    <div class="feature-icon">🌐</div>
                     <h3>7 Global Regions</h3>
                     <p>Deploy across US West, US Central, US East, EU West, EU Central, Asia Tokyo, or Asia Singapore.</p>
                 </div>
@@ -825,6 +845,27 @@
                     <button class="btn btn-coming-soon" style="width: 100%;">Contact Sales</button>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact" style="padding: 5rem 0; background: var(--light);">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary);">Contact Sales</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Need custom configuration or enterprise pricing? Get in touch with our team.
+            </p>
+            
+            <!-- Netlify Contact Form -->
+            <form name="contact-sales" method="POST" data-netlify="true" style="max-width: 600px; margin: 0 auto;">
+                <div style="display: grid; gap: 1rem;">
+                    <input type="text" name="name" placeholder="Your Name" required style="padding: 0.875rem 1.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--card-bg); color: var(--text-primary);">
+                    <input type="email" name="email" placeholder="Your Email" required style="padding: 0.875rem 1.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--card-bg); color: var(--text-primary);">
+                    <input type="text" name="company" placeholder="Company Name" style="padding: 0.875rem 1.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--card-bg); color: var(--text-primary);">
+                    <textarea name="message" placeholder="Tell us about your needs..." rows="5" required style="padding: 0.875rem 1.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--card-bg); color: var(--text-primary); resize: vertical;"></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </div>
+            </form>
         </div>
     </section>
 
@@ -1036,9 +1077,6 @@
             if (type === 'signin') {
                 title.textContent = 'Sign In Coming Soon';
                 message.textContent = 'Customer portal will be available at launch. Join the waitlist to be notified!';
-            } else if (type === 'waitlist-success') {
-                title.textContent = 'Welcome to the Waitlist!';
-                message.textContent = 'You\'re on the list! We\'ll notify you when early access opens.';
             }
             
             modal.classList.add('active');
@@ -1048,20 +1086,20 @@
             document.getElementById('modal').classList.remove('active');
         }
 
-        // Waitlist Handler
-        function handleWaitlist(event) {
-            event.preventDefault();
-            // In production, this would send to your backend
-            showModal('waitlist-success');
-            event.target.reset();
-        }
-
         // Click outside modal to close
         document.getElementById('modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
+
+        // Check for form success (after redirect back from Netlify)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            document.getElementById('form-success').classList.add('show');
+            // Scroll to the form
+            document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
