@@ -17,6 +17,10 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         :root {
             --primary: #5B21B6;
             --primary-dark: #4C1D95;
@@ -90,12 +94,23 @@
             padding: 1rem 0;
         }
         
+        .logo-link {
+            text-decoration: none;
+            display: inline-block;
+        }
+        
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .logo-link:hover .logo {
+            opacity: 0.8;
         }
         
         .nav-links {
@@ -116,6 +131,11 @@
             color: var(--primary);
         }
         
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
         .theme-toggle {
             background: none;
             border: none;
@@ -129,6 +149,17 @@
         
         .theme-toggle:hover {
             background: var(--light);
+        }
+        
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 0.5rem;
         }
         
         /* Countdown Timer */
@@ -632,6 +663,10 @@
             padding: 0.5rem;
         }
         
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
         /* Modal */
         .modal {
             display: none;
@@ -669,7 +704,7 @@
             margin-bottom: 1.5rem;
         }
         
-        /* Mobile */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -684,10 +719,27 @@
             }
             
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s;
+                z-index: 999;
             }
             
-            .company-grid,
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -717,8 +769,11 @@
     <!-- Header -->
     <header>
         <nav class="container">
-            <div class="logo">stored.ge</div>
-            <ul class="nav-links">
+            <a href="#home" class="logo-link">
+                <div class="logo">stored.ge</div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
@@ -726,11 +781,12 @@
                 <li><a href="#" onclick="showModal('signin')">Sign In</a></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()">🌙</button></li>
             </ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
         </nav>
     </header>
 
     <!-- Countdown Section -->
-    <section class="countdown-section">
+    <section class="countdown-section" id="home">
         <div class="container">
             <h2 class="countdown-title">Platform Launch In:</h2>
             <div class="countdown" id="countdown">
@@ -1021,7 +1077,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="logo">stored.ge</div>
+                    <a href="#home" class="logo-link">
+                        <div class="logo">stored.ge</div>
+                    </a>
                     <p>Enterprise S3 Storage + VPS Platform</p>
                     <p style="font-size: 0.875rem;">© 2024-2025 stored.ge - A Division of FairForge LLC</p>
                 </div>
@@ -1083,6 +1141,19 @@
     </div>
 
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
         // Dark Mode Toggle
         function toggleTheme() {
             const html = document.documentElement;
@@ -1161,6 +1232,28 @@
             if (e.target === this) {
                 closeModal();
             }
+        });
+
+        // Smooth scroll and active nav link
+        const sections = document.querySelectorAll('section[id]');
+        const navLi = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(li => {
+                li.classList.remove('active');
+                if (li.getAttribute('href').slice(1) === current) {
+                    li.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
