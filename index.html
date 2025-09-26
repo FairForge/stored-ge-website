@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>stored.ge - Enterprise S3-Compatible Storage + VPS Platform</title>
-    <meta name="description" content="Enterprise S3 storage with integrated VPS compute. 7 global regions, full IAM, persistent storage. Launching October 2025.">
+    <meta name="description" content="Enterprise S3 storage with integrated VPS compute. 7 global regions, full IAM, persistent storage. Launching November 2025.">
     <meta property="og:title" content="stored.ge - Enterprise Storage Platform">
     <meta property="og:description" content="Next-generation S3-compatible storage with integrated compute. Join the waitlist for early access.">
     <meta property="og:image" content="https://stored.ge/preview.png">
@@ -261,24 +261,104 @@
             opacity: 0.7;
         }
         
-        /* Success Message */
-        .form-success {
-            background: var(--accent);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            margin-top: 2rem;
-            display: none;
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: var(--white);
         }
         
-        .form-success.show {
-            display: block;
+        .about h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+        
+        .about-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .about-section p, .about-section address {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-style: normal;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-value {
+            color: var(--text-secondary);
+        }
+        
+        .contact-value a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
         
         /* Features */
         .features {
             padding: 5rem 0;
-            background: var(--white);
+            background: var(--light);
         }
         
         .features h2 {
@@ -341,7 +421,7 @@
         /* Pricing */
         .pricing {
             padding: 5rem 0;
-            background: var(--light);
+            background: var(--white);
         }
         
         .pricing h2 {
@@ -417,7 +497,7 @@
         /* Technical Specs */
         .specs {
             padding: 5rem 0;
-            background: var(--white);
+            background: var(--light);
         }
         
         .specs-grid {
@@ -453,56 +533,6 @@
             border-radius: 0.5rem;
             font-size: 0.7rem;
             margin-left: 0.5rem;
-        }
-        
-        /* Company Info */
-        .company {
-            padding: 5rem 0;
-            background: var(--light);
-        }
-        
-        .company-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .company-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-        
-        .company-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .company-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .stat {
-            text-align: center;
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border-radius: 0.5rem;
-            border: 1px solid var(--border-color);
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
         }
         
         /* Partners */
@@ -689,10 +719,10 @@
         <nav class="container">
             <div class="logo">stored.ge</div>
             <ul class="nav-links">
+                <li><a href="#about">About</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#specs">Infrastructure</a></li>
-                <li><a href="#company">Company</a></li>
                 <li><a href="#" onclick="showModal('signin')">Sign In</a></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()">🌙</button></li>
             </ul>
@@ -705,7 +735,7 @@
             <h2 class="countdown-title">Platform Launch In:</h2>
             <div class="countdown" id="countdown">
                 <div class="countdown-item">
-                    <span class="countdown-number" id="days">316</span>
+                    <span class="countdown-number" id="days">36</span>
                     <span class="countdown-label">Days</span>
                 </div>
                 <div class="countdown-item">
@@ -721,7 +751,7 @@
                     <span class="countdown-label">Seconds</span>
                 </div>
             </div>
-            <p style="opacity: 0.9;">October 1st, 2025 - Be Part of the Storage Revolution</p>
+            <p style="opacity: 0.9;">November 1st, 2025 - Be Part of the Storage Revolution</p>
         </div>
     </section>
 
@@ -732,20 +762,102 @@
             <h1>Enterprise S3 Storage + VPS Platform</h1>
             <p>The most advanced S3-compatible object storage with integrated compute. 7 global regions, full IAM support, persistent storage that survives VPS rebuilds.</p>
             
-            <!-- Netlify Form -->
-            <form name="waitlist" method="POST" data-netlify="true" action="/success" class="waitlist-form">
-                <input type="email" name="email" placeholder="Enter your email for early access" required>
+            <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+                <input type="email" placeholder="Enter your email for early access" required>
                 <button type="submit" class="btn btn-primary">Join Waitlist</button>
             </form>
-            
-            <!-- Success Message (shown after form submission) -->
-            <div id="form-success" class="form-success">
-                🎉 Success! You're on the waitlist. We'll notify you when early access opens!
-            </div>
             
             <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-secondary);">
                 Be among the first 100 users to get 50% off for life
             </p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About stored.ge</h2>
+            <div class="about-content">
+                <div class="about-section">
+                    <h3>Our Mission</h3>
+                    <p>Stored, a FairForge company, seeks to democratize enterprise-grade cloud storage by eliminating the complexity and excessive costs that plague traditional providers. We believe that powerful storage infrastructure should be accessible to everyone, from individual developers to large enterprises, without requiring deep pockets or specialized expertise. By combining intelligent storage orchestration with transparent pricing, we're building the platform that makes enterprise storage as simple as consumer services. Our vision is to become the default storage layer for the next generation of applications, enabling builders to focus on innovation rather than infrastructure management.</p>
+                </div>
+
+                <div class="about-section">
+                    <h3>Company Information</h3>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <span class="contact-label">Legal Name</span>
+                            <span class="contact-value">FairForge, LLC DBA Stored</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Registration Number</span>
+                            <span class="contact-value">806230097</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">EIN</span>
+                            <span class="contact-value">39-4524996</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Headquarters</span>
+                            <address class="contact-value">
+                                4621 Al Hernandez<br>
+                                El Paso, Texas 79938<br>
+                                United States
+                            </address>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3>Contact Information</h3>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <span class="contact-label">Support Email</span>
+                            <span class="contact-value">
+                                <a href="mailto:support@fairforge.io">support@fairforge.io</a>
+                            </span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Partnership Inquiries</span>
+                            <span class="contact-value">
+                                <a href="mailto:partner@fairforge.io">partner@fairforge.io</a>
+                            </span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Phone</span>
+                            <span class="contact-value">
+                                <a href="tel:+19157772400">(915) 777-2400</a>
+                            </span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Business Hours</span>
+                            <span class="contact-value">
+                                Monday - Friday<br>
+                                9:00 AM - 6:00 PM CST
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-grid">
+                        <a href="https://www.linkedin.com/company/stored-cloud/" target="_blank" class="social-link">
+                            LinkedIn
+                        </a>
+                        <a href="https://reddit.com/r/fairforge" target="_blank" class="social-link">
+                            Reddit Community
+                        </a>
+                        <a href="https://reddit.com/u/storedge" target="_blank" class="social-link">
+                            Reddit Profile
+                        </a>
+                        <a href="https://lowendtalk.com/profile/Stored" target="_blank" class="social-link">
+                            LowEndTalk
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -762,7 +874,7 @@
                     <p>Full S3 API compatibility with IAM policies, CORS, versioning, lifecycle management, and multipart uploads.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
+                    <div class="feature-icon">🌍</div>
                     <h3>7 Global Regions</h3>
                     <p>Deploy across US West, US Central, US East, EU West, EU Central, Asia Tokyo, or Asia Singapore.</p>
                 </div>
@@ -809,7 +921,7 @@
                         <li>99.9% Uptime SLA</li>
                         <li>Email Support</li>
                     </ul>
-                    <button class="btn btn-coming-soon" style="width: 100%;">Coming October 2025</button>
+                    <button class="btn btn-coming-soon" style="width: 100%;">Coming November 2025</button>
                 </div>
                 
                 <div class="pricing-card featured">
@@ -826,7 +938,7 @@
                         <li>Priority Support</li>
                         <li>Dedicated IPv4 Option</li>
                     </ul>
-                    <button class="btn btn-coming-soon" style="width: 100%;">Coming October 2025</button>
+                    <button class="btn btn-coming-soon" style="width: 100%;">Coming November 2025</button>
                 </div>
                 
                 <div class="pricing-card">
@@ -845,27 +957,6 @@
                     <button class="btn btn-coming-soon" style="width: 100%;">Contact Sales</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section class="contact" style="padding: 5rem 0; background: var(--light);">
-        <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary);">Contact Sales</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Need custom configuration or enterprise pricing? Get in touch with our team.
-            </p>
-            
-            <!-- Netlify Contact Form -->
-            <form name="contact-sales" method="POST" data-netlify="true" action="/success" style="max-width: 600px; margin: 0 auto;">
-                <div style="display: grid; gap: 1rem;">
-                    <input type="text" name="name" placeholder="Your Name" required style="padding: 0.875rem 1.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--card-bg); color: var(--text-primary);">
-                    <input type="email" name="email" placeholder="Your Email" required style="padding: 0.875rem 1.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--card-bg); color: var(--text-primary);">
-                    <input type="text" name="company" placeholder="Company Name" style="padding: 0.875rem 1.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--card-bg); color: var(--text-primary);">
-                    <textarea name="message" placeholder="Tell us about your needs..." rows="5" required style="padding: 0.875rem 1.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--card-bg); color: var(--text-primary); resize: vertical;"></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </div>
-            </form>
         </div>
     </section>
 
@@ -925,38 +1016,6 @@
         </div>
     </section>
 
-    <!-- Company -->
-    <section class="company" id="company">
-        <div class="container">
-            <div class="company-grid">
-                <div class="company-content">
-                    <h2>Built for the Future of Storage</h2>
-                    <p>stored.ge is a next-generation storage platform designed from the ground up to meet the demands of modern applications. We combine enterprise-grade reliability with developer-friendly simplicity.</p>
-                    <p>Our unique architecture allows persistent storage that survives VPS rebuilds, making it perfect for containerized applications, CI/CD pipelines, and development workflows.</p>
-                    <p>Founded by infrastructure engineers with decades of combined experience at leading tech companies, we're building the storage platform we wished existed.</p>
-                </div>
-                <div class="company-stats">
-                    <div class="stat">
-                        <div class="stat-number">7</div>
-                        <div class="stat-label">Global Regions</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">99.99%</div>
-                        <div class="stat-label">Uptime SLA</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">10PB+</div>
-                        <div class="stat-label">Storage Capacity</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support Available</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -964,7 +1023,7 @@
                 <div class="footer-brand">
                     <div class="logo">stored.ge</div>
                     <p>Enterprise S3 Storage + VPS Platform</p>
-                    <p style="font-size: 0.875rem;">© 2024 stored.ge - A Division of Fairforge LLC</p>
+                    <p style="font-size: 0.875rem;">© 2024-2025 stored.ge - A Division of FairForge LLC</p>
                 </div>
                 
                 <div class="footer-section">
@@ -981,11 +1040,11 @@
                 <div class="footer-section">
                     <h4>Company</h4>
                     <ul class="footer-links">
-                        <li><a href="#company">About Us</a></li>
+                        <li><a href="#about">About Us</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Careers</a></li>
                         <li><a href="#">Partners</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="mailto:support@fairforge.io">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -1006,9 +1065,9 @@
                     Powered by Seagate Lyve Cloud and ReliableSite Infrastructure
                 </p>
                 <div class="social-links">
-                    <a href="#">Twitter</a>
-                    <a href="#">GitHub</a>
-                    <a href="#">LinkedIn</a>
+                    <a href="https://www.linkedin.com/company/stored-cloud/" target="_blank">LinkedIn</a>
+                    <a href="https://reddit.com/r/fairforge" target="_blank">Reddit</a>
+                    <a href="https://lowendtalk.com/profile/Stored" target="_blank">LowEndTalk</a>
                 </div>
             </div>
         </div>
@@ -1018,7 +1077,7 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             <h3 id="modal-title">Coming Soon</h3>
-            <p id="modal-message">This feature will be available when we launch in October 2025.</p>
+            <p id="modal-message">This feature will be available when we launch in November 2025.</p>
             <button class="btn btn-primary" onclick="closeModal()">Got It</button>
         </div>
     </div>
@@ -1044,9 +1103,9 @@
             document.querySelector('.theme-toggle').textContent = '☀️';
         }
 
-        // Countdown Timer
+        // Countdown Timer - Updated for November 1, 2025
         function updateCountdown() {
-            const launchDate = new Date('October 1, 2025 00:00:00').getTime();
+            const launchDate = new Date('November 1, 2025 00:00:00').getTime();
             const now = new Date().getTime();
             const distance = launchDate - now;
 
@@ -1077,6 +1136,9 @@
             if (type === 'signin') {
                 title.textContent = 'Sign In Coming Soon';
                 message.textContent = 'Customer portal will be available at launch. Join the waitlist to be notified!';
+            } else if (type === 'waitlist-success') {
+                title.textContent = 'Welcome to the Waitlist!';
+                message.textContent = 'You\'re on the list! We\'ll notify you when early access opens.';
             }
             
             modal.classList.add('active');
@@ -1086,20 +1148,20 @@
             document.getElementById('modal').classList.remove('active');
         }
 
+        // Waitlist Handler
+        function handleWaitlist(event) {
+            event.preventDefault();
+            // In production, this would send to your backend
+            showModal('waitlist-success');
+            event.target.reset();
+        }
+
         // Click outside modal to close
         document.getElementById('modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
-
-        // Check for form success (after redirect back from Netlify)
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('success') === 'true') {
-            document.getElementById('form-success').classList.add('show');
-            // Scroll to the form
-            document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
-        }
     </script>
 </body>
 </html>
